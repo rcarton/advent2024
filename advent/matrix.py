@@ -97,6 +97,11 @@ class Matrix(Generic[T]):
             raise IndexError(f"Coord out of range {coord}")
         return row * self.width + col
 
+    def get(self, coord: Coord, default=None) -> T:
+        if not self.is_valid_coord(coord):
+            return default
+        return self[coord]
+
     def __getitem__(self, coord: Coord) -> T:
         return self.data[self.__get_index(coord)]
 
@@ -104,9 +109,7 @@ class Matrix(Generic[T]):
         self.data[self.__get_index(coord)] = value
 
     @classmethod
-    def from_string(
-        cls, data: str, fn: Optional[Callable[[str], T]] = None
-    ) -> "Matrix[T]":
+    def from_string(cls, data: str, fn: Optional[Callable[[str], T]] = None) -> "Matrix[T]":
         rows = data.splitlines()
         height = len(rows)
         width = len(rows[0])
@@ -118,9 +121,7 @@ class Matrix(Generic[T]):
             for y in range(self.width):
                 yield x, y
 
-    def neighbor_coords(
-        self, coord: Coord, include_diagonals: bool = False
-    ) -> List[Coord]:
+    def neighbor_coords(self, coord: Coord, include_diagonals: bool = False) -> List[Coord]:
         row, col = coord
         coords = [(row - 1, col), (row + 1, col), (row, col - 1), (row, col + 1)]
         if include_diagonals:

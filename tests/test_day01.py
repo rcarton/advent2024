@@ -16,4 +16,3 @@ def test_first():
 
 def test_second():
     assert second(io.StringIO(data)) == 31
-
