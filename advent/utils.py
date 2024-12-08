@@ -16,6 +16,14 @@ def tadd(*tuples: T) -> T:
     return tuple(sum(l) for l in zip(*tuples))
 
 
+def sub(n: Sequence[T]) -> T:
+    return n[0] + -1 * sum(n[1:])
+
+
+def tsub(*tuples: T) -> T:
+    return tuple(sub(l) for l in zip(*tuples))
+
+
 def binseq_to_int(binseq: Sequence[Union[str, int, bool]]) -> int:
     """Turn a sequence that can be mapped to bits into its integer representation:
 
