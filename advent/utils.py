@@ -2,7 +2,7 @@ import io
 import operator
 from functools import reduce
 from pathlib import Path
-from typing import List, Optional, Sequence, TextIO, TypeVar, Union
+from typing import Iterator, List, Optional, Sequence, TextIO, TypeVar, Union
 
 T = TypeVar("T")
 
@@ -18,6 +18,10 @@ def tadd(*tuples: T) -> T:
 
 def sub(n: Sequence[T]) -> T:
     return n[0] + -1 * sum(n[1:])
+
+
+def mul(n: Iterator[T]) -> T:
+    return reduce(lambda p, c: p * c, n, 1)
 
 
 def tsub(*tuples: T) -> T:
