@@ -14,6 +14,14 @@ Delta = Tuple[int, int]
 Direction = Literal["up", "down", "left", "right"]
 
 
+DIR_DELTAS: dict[Direction, Delta] = {
+    "up": (-1, 0),
+    "down": (1, 0),
+    "left": (0, -1),
+    "right": (0, 1),
+}
+
+
 def get_coords_between_vertices(self, start: Coord, end: Coord) -> list[Coord]:
     r1, c1 = start
     r2, c2 = end
