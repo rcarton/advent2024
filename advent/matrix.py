@@ -158,6 +158,18 @@ class Matrix(Generic[T]):
     def nbc8(self, coord: Coord) -> List[Coord]:
         return self.neighbor_coords(coord, include_diagonals=True)
 
+    def nbc_within_distance(self, coord: Coord, distance: int) -> List[Coord]:
+        c_row, c_col = coord
+
+        nbcs = []
+        for col in range(c_col - distance, c_col + distance + 1):
+            vertical_room = distance - abs(c_col - col)
+            for row in range(c_row - vertical_room, c_row + vertical_room + 1):
+                c = (row, col)
+                if c != coord and self.is_valid_coord(c):
+                    nbcs.append(c)
+        return nbcs
+
     def get_row(self, row: int) -> List[T]:
         row_start = row * self.width
         return self.data[row_start : row_start + self.width]

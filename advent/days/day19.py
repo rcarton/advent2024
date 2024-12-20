@@ -1,9 +1,6 @@
 from functools import cache
 from typing import TextIO
 
-Towel = str
-Towels = set[Towel]
-
 
 def first(input: TextIO) -> int:
     towels_s, patterns_s = input.read().split("\n\n")
