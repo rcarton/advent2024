@@ -37,7 +37,6 @@ def test_find_all_long_cheats():
     cheats = m.find_all_long_cheats(min_saved=50)
 
     counter = Counter(c[2] for c in cheats)
-    # sorted_cheats = sorted(cheats, key=lambda c: c[2])
     assert counter[64] == 19
 
 
